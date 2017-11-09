@@ -1,0 +1,125 @@
+<!-- /.drawerSpNav -->
+<div class="mainBannerWrapper" style="background-image: url(/assets/images/news/FD-CO-DISTRIBUTOR_NEWS_Banner-PC.png);">
+<div class="mainBannerWrapper-inner" style="background-image: url(/assets/images/news/FD-CO-DISTRIBUTOR_NEWS_Banner-MB.png);">
+  </div>
+</div>
+<!-- /.mainBannerWrapper -->
+
+
+<div class="content clearfix hasSidebar">
+
+
+<div class="content clearfix hasSidebar">
+<article id="article" class="article_post">
+	<div class="backto"><%= link_to raw('&laquo; Back to News'), :dp_news_index %></div>
+
+	<h1 class="postTitle"><span><%= @news.title %></span></h1>
+	<div class="postContents">
+		<div class="eyecatch" ><%= image_tag @news.eyecatch.url(:original) %></div>
+
+		<div class="entry-content" id="visual_composer_content">
+			<%= raw(@news.description) %><
+		</div><!-- .entry-content -->
+	</div><!-- .postContents -->
+
+<div id="comments" class="comments-area loaded">
+                    <div id="respond" style="width: 0;height: 0;clear: both;margin: 0;padding: 0;"></div>
+                            <h3 id="wc-comment-header">Comment</h3>
+
+
+                        <div id="wpcomm" class="wpdiscuz_auth" style="display: block; opacity: 1;">
+                    
+                <div id="wpdiscuz_hidden_secondary_form" style="display: none;">
+                    
+                </div>
+            		<% @news.news_comments.each do |comment| %>
+                                <div id="wcThreadWrapper" class="wc-thread-wrapper"><div id="wc-comm-42_0" class="wc-comment wc-blog-administrator wc_comment_level-1 moved"><div class="wc-comment-right "><div class="wc-comment-header"><div class="wc-comment-author"><%= comment.name %> / <%= comment.email %></div>
+                                <div class="wpdiscuz_clear"></div></div>
+                                <div class="wc-comment-text">
+<p><%= simple_format(comment.description) %></p>
+</div>
+<div style="clear:both"></div>
+</div></div>
+<% end %>
+
+
+<div class="wc-form-wrapper wc-main-form-wrapper" id="wc-main-form-wrapper-0_0">
+            <div class="wpdiscuz-comment-message" style="display: block;"></div>
+       
+       <%= form_for @new_comment, :url => dp_create_news_comment_path do |f| %>
+
+       <h3 class="wc-form-header">Add your Comment</h3>
+                    <div class="wc-form-footer" style="display: none;"> 
+                                <div class="wpd-form-row">
+
+                <div class="wpd-form-col-right">
+                    
+                </div>
+                    <div class="clearfix"></div>
+        </div>
+                            </div><div class="wc-field-comment">
+                                                <div class="wpdiscuz-item wc-field-textarea">
+                            <div class="wpdiscuz-textarea-wrap ">
+                            <%= f.text_field :name ,{placeholder: :Name, required: true} %>
+                            <%= f.text_field :email ,{placeholder: 'Company Name', required: true} %>
+                            <%= f.text_area :description ,{placeholder: :Message, required: true, class: 'wc_comment wpd-field"'} %>
+                            <%= f.hidden_field :news_id, {value: @news.id.to_s} %>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div><div class="wc-field-submit"><%= f.submit 'Post Comment' , { class: 'wc_comm_submit button alt wc_not_clicked'} %></div>
+                    
+                    <div class="clearfix"></div>
+                    <input type="hidden" class="wpdiscuz_unique_id" value="0_0" name="wpdiscuz_unique_id">
+         <% end %>
+         <%= link_to 'Delete News', :dp_news, method: :delete, data: { confirm: 'Are you sure you want to delete this news? This operation cannot be undone. ?' } %>
+                    </div>
+                   </div>
+                <div class="wpdiscuz_clear"></div>
+                                            </div>
+        </div>
+
+
+
+
+</article>
+<!-- /.indexArticle -->
+
+
+
+<aside class="sideContentsMenu">
+
+<div class="sideContents sideContents-category">
+&nbsp;
+</div>
+<!-- /.sideContents -->
+</aside>
+<!-- /.sideContentsMenu -->
+
+</div>
+
+</div>
+<link rel='stylesheet' id='wpdiscuz-css'  href='//fukuda.com/wp-content/themes/fukudafw/assets/css/wpdiscuz-customize.css' type='text/css' media='all' />
+
+<style>
+div.eyecatch{
+	width: 100%;
+	text-align: center;
+	margin: 1em 0;
+}
+article#article{
+  margin-bottom: 4rem;
+}
+
+#wpcomm .wc-comment .wc-comment-right .wc-comment-text {
+	margin-left: 0;
+}
+
+div.hasSidebar article {
+   float: none;
+   width: 680px;
+   padding: 0;
+   margin-left: auto;
+   margin-right: auto;
+}
+</style>

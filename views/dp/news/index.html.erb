@@ -1,0 +1,116 @@
+<!-- /.drawerSpNav -->
+<div class="mainBannerWrapper" style="background-image: url(/assets/images/news/FD-CO-DISTRIBUTOR_NEWS_Banner-PC.png);">
+<div class="mainBannerWrapper-inner" style="background-image: url(/assets/images/news/FD-CO-DISTRIBUTOR_NEWS_Banner-MB.png);">
+  </div>
+</div>
+<!-- /.mainBannerWrapper -->
+
+<div class="content clearfix">
+
+<article class="article">
+
+  <header class="page-header">
+  <h2 class="page-header-title" title="">News</h2>
+  </header><!-- .page-header -->
+
+  <div class="postArchive-list">
+
+    <% @news.each do |news| %>
+
+    <div class="postArchive-item postArchive-item-hasThumb">
+      <div class="postArchive-item-header">
+        <h3 class="postArchive-item-title">
+          <%= link_to news.title, dp_news_path(news) %>
+        </h3>
+        <p class="postArchive-item-date subTitle">Posted on <%=  news.post_at %></p>
+      </div>
+      <!-- /.postArchive-item-header -->
+
+      <div class="postArchive-item-content clearfix">
+        <figure class="postArchive-item-thumb">
+
+          <%= image_tag news.eyecatch.url(:original) ,{width:360, height:100}%>
+          <!--
+          <a href="/news/press-releases-2016/" class="pc">
+            <img width="280" height="100" src="//fukuda-fw.s3.amazonaws.com/wp-content/uploads/2017/03/27164952/FD-CO-ECG.S_Image-4-FCP-30-280x100.png">
+          </a>
+          <a href="/news/press-releases-2016/" class="sp">
+            <img width="380" height="100" src="//fukuda-fw.s3.amazonaws.com/wp-content/uploads/2017/03/27164952/FD-CO-ECG.S_Image-4-FCP-30-380x100.png">
+          </a>
+          -->
+        </figure>
+        <!-- /.postArchive-item-thumb -->
+
+        <div class="postArchive-item-detail">
+          <div class="postArchive-item-desc">
+          <%= raw( news.description()) %>
+          </div>
+          <div class="postArchive-item-meta clearfix">
+            <!-- <p class="postArchive-item-link"><%= link_to 'Read more' , dp_news_path(news) ,{class: 'link-readmore'}%></p> -->
+            <ul class="postArchive-item-comment">
+              <li>
+              <span class="link-share">Share</span>
+              <div class="sns-btn-container">
+                <div class="sns-btn-container-inner">
+                  <!-- <a href="" class="fb" target="_blank"><i class="fa fa-facebook-square"></i></a>-->
+                  <div class="fb-like" data-href="<%= url_for dp_news_path(news)  %>" data-layout="button" data-action="like" data-size="small" data-show-faces="false" data-share="false"></div>
+                  <a href="https://twitter.com/intent/tweet?text=<%= "#{news.title} #{request.protocol
+}://#{request.host}:#{request.port}#{url_for dp_news_path(news)}".encode  %>" class="twitter-share-button" target="_blank">Tweet</a>
+                </div>
+              </div>
+              </li>
+              <li><a href="" class="link-comment"><%= link_to 'Comment', dp_news_path(news) %><span class="item-count">[ <%= news.news_comments.count %> ]</span></a></li>
+            </ul>
+          </div>
+        </div>
+        <!-- /.postArchive-item-detail -->
+
+      </div>
+      <!-- /.postArchive-item-content -->
+    </div>
+    <!-- /.postArchive-item -->
+    <% end %>
+<% if Dp::Application.config.admin_emails.include?(session[:nameid]) %>
+<%= link_to 'New News', new_dp_news_path %>
+<% end %>
+
+
+  </div>
+  <!-- .postArchive-list -->
+<!--
+  <div class="wp-pagenavi">
+  <span class="pages">1 / 2</span>
+  <span class="current">1</span>
+  <a class="page larger" title="Page 2" href="/news/page/2/">2</a>
+  <a class="nextpostslink" rel="next" href="/news/page/2/">»</a>
+  </div>
+-->
+</article>
+
+<!-- /.sideContentsMenu -->
+
+</div>
+<!-- /.content -->
+<style>
+/*　トリミングする外側の枠　*/
+figure.postArchive-item-thumb {
+    overflow: hidden;
+    width: 280px;/* トリミングしたい枠の幅 */
+    height: 100px;/* トリミングしたい枠の高さ */
+    position: relative;
+}
+figure.postArchive-item-thumb img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+}
+
+</style>
+

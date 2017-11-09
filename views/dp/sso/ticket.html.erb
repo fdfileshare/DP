@@ -1,0 +1,165 @@
+<!-- /.drawerSpNav -->
+<div class="mainBannerWrapper" style="background-image: url(/assets/images/ticket/FD-CO-Ticket_Submission_Banner-PC.png);">
+<div class="mainBannerWrapper-inner" style="background-image: url(/assets/images/ticket/FD-CO-Ticket_Submission_Banner-MB.png);">
+  </div>
+</div>
+<!-- /.mainBannerWrapper -->
+
+<div class="content clearfix">
+
+<article class="article">
+    <div class="backto"><%= link_to raw('&laquo; Back to Tickets'), :dp_tickets %></div>
+
+  <div class="block-frame ticketform-container ticket-detail">
+
+    <div class="block">
+    <div class="item-label half"><h3>Ticket ID</h3></div>
+    <div class="item-label half"><h3>Category</h3></div>
+
+    <div class="item-value half"><%= @ticket.id %></div>
+    <div class="item-value half"><%= @ticket.fields[:category].capitalize %></div>
+
+    <div class="item-label half"><h3>First Name</h3></div>
+    <div class="item-label half"><h3>Last Name</h3></div>
+
+    <div class="item-value half"><%= @ticket.fields[:first_name] %></div>
+    <div class="item-value half"><%= @ticket.fields[:last_name] %></div>
+
+    <div class="item-label half"><h3>Email</h3></div>
+    <div class="item-label half"><h3>&nbsp;</h3></div>
+
+    <div class="item-value half"><%= @ticket.fields[:email] %></div>
+    <div class="item-value half">&nbsp;</div>
+
+
+    <% if @ticket.fields[:category] === 'general' %>
+      <div class="item-label full border"><h3>Enquiry</h3></div>
+      <div class="item-value full clearfix"><%= simple_format(@ticket.fields[:general_enquiry]) %></div>
+
+    <% elsif @ticket.fields[:category] === 'repair' %>
+
+      <div class="item-label full border"><h3>Enquiry</h3></div>
+      <div class="item-value full"><%= simple_format(@ticket.fields[:repair_description]) %></div>
+  
+      <div class="item-label half"><h3>Hospital / Site Name</h3></div>
+      <div class="item-label half"><h3>Hospital / Site Address</h3></div>
+  
+      <div class="item-value half"><%= simple_format(@ticket.fields[:repair_hospital_name]) %></div>
+      <div class="item-value half"><%= @ticket.fields[:repair_hospital_address] %></div>
+  
+  
+      <div class="item-label half"><h3>Product Model Name</h3></div>
+      <div class="item-label half"><h3>Product Serial Number</h3></div>
+  
+      <div class="item-value half"><%= simple_format(@ticket.fields[:repair_product_name]) %></div>
+      <div class="item-value half"><%= simple_format(@ticket.fields[:repair_serial_number]) %></div>
+  
+      <div class="item-label full"><h3>Works &amp; checks undertaken on product / part</h3></div>
+      <div class="item-value full clearfix"><%= simple_format(@ticket.fields[:repair_works]) %></div>
+
+    <% elsif @ticket.fields[:category] === 'technical' %>
+
+      <div class="item-label full"><h3>Enquiry</h3></div>
+      <div class="item-value full"><%= simple_format(@ticket.fields[:technical_description]) %></div>
+
+      <div class="item-label full"><h3>Product Line</h3></div>
+      <div class="item-value full clearfix"><%= simple_format(@ticket.fields[:technical_product].capitalize ) %></div>
+    <% end %>
+    &nbsp;
+    </div>
+  </div>
+
+  <div class="ticket-comments">
+    <div class="block">
+      <h3>Ticket Messages</h3>
+      <% @comments.reverse.each do |comment| %>
+        <div class="comment">
+        <div class="date"> <%= comment.created_at %></div>
+        <div class="name"><% if Dp::Application.config.zendesk_admin_ids.include?(comment.author_id) %>
+       <%= image_tag '/assets/images/ticket/agent.png' %> Fukuda Agent
+        <% else %>
+       <%= image_tag '/assets/images/ticket/guest.png' %> <%= @ticket.fields[:first_name] %> <%= @ticket.fields[:last_name] %>
+        <% end %></div>
+          <%= simple_format comment.html_body %>
+
+          <% if !Dp::Application.config.zendesk_admin_ids.include?(comment.author_id) %><br/><bn/><% end %>
+          <% if comment.attachments %>
+            <% comment.attachments.each do |attachment| %>
+              <%= link_to attachment.content_url, attachment.content_url, {targetL: '_blank'} %>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+
+
+</article>
+
+</div>
+<!-- /.content -->
+
+<style>
+div.backto{
+  max-width: 820px;
+  margin: 10px auto;
+  padding: 0;
+
+}
+div.ticket-detail .item-label{
+  display: block;
+}
+div.ticket-detail .item-label h3{
+  font-size: 2.0rem;
+  margin-bottom: 0px;
+}
+
+div.ticket-detail .item-value{
+  font-size: 1.8rem;
+  padding-bottom: 1em !important;
+}
+
+div.ticket-detail .half{
+  float:left;
+  width: 50%;
+  margin: 0;
+  padding: 0;
+}
+
+div.ticket-detail .full{
+  float:left;
+  width: 100%;
+}
+div.ticket-detail .border{
+  border-top: solid 1px #ddd;
+  padding-top: 10px;
+}
+
+div.ticket-comments{
+  max-width: 820px;
+  margin: 40px auto;
+  padding: 0;
+}
+
+div.ticket-comments .comment{
+  border: solid 1px #efefef;
+  padding: 6px 10px;
+}
+
+div.ticket-comments .date{
+  text-align: right;
+  font-size: 1.3rem;
+}
+
+div.ticket-comments .name{
+  font-size: 1.8rem;
+  margin-bottom: 0.6rem;
+}
+div.ticket-comments .zd-comment{
+  padding-left: 2rem;
+}
+
+
+
+</style>

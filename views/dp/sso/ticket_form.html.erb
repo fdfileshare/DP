@@ -1,0 +1,161 @@
+<!-- /.drawerSpNav -->
+<div class="mainBannerWrapper" style="background-image: url(/assets/images/ticket/FD-CO-Ticket_Submission_Banner-PC.png);">
+<div class="mainBannerWrapper-inner" style="background-image: url(/assets/images/ticket/FD-CO-Ticket_Submission_Banner-MB.png);">
+  </div>
+</div>
+<!-- /.mainBannerWrapper -->
+
+<div class="content clearfix">
+
+<article class="article">
+<div class="block-frame ticketform-container">
+  <%= form_tag :dp_ticket_form do %>
+ 
+  <h2 class="item-title subTitle">SUBMIT A TICKET</h2>
+
+  <div class="block">
+    <div class="item-label"><%= label_tag(:category, "What is your enquiry about? :") %></div>
+    <div class="item-content item-content-select">
+	    <%= select_tag(:category, options_for_select([['Select your inquiry type:',''],['General','General'],['Repair','Repair'],['Technical','Technical']]) ) %>
+    </div>
+  </div>
+
+  <div class="additional_form Common_form">
+    <div class="block">
+      <div class="item-label"><%= label_tag(:first_name, "First Name:") %></div>
+      <div class="item-content"><%= text_field_tag(:first_name,nil,{placeholder: "First Name:",required: true}) %></div>
+    </div>
+  
+    <div class="block">
+      <div class="item-label"><<%= label_tag(:last_name, "Last Name:") %></div>
+      <div class="item-content"><%= text_field_tag(:last_name,nil,{placeholder: "Last Name:",required: true}) %></div>
+    </div>
+  
+    <div class="block">
+      <div class="item-label"><%= label_tag(:email, "Email:") %></div>
+      <div class="item-content"><%= email_field_tag(:email,nil,{placeholder: "Email:",required: true}) %></div>
+    </div>
+  </div>
+
+  <div id="General_form" class="additional_form">
+    <div class="block">
+      <div class="item-label"><%= label_tag(:general_enquiry, "Please write your enquiry :",required: true) %></div>
+      <div class="item-content">
+      <%= text_area_tag(:general_enquiry,nil,{placeholder: "Please write your enquiry:", rows: 8,required: true}) %>
+      </div>
+    </div>
+  </div>
+  <!-- /#general_form -->
+
+
+  <div id="Repair_form" class="additional_form">
+    <div class="block">
+      <div class="item-label"><%= label_tag(:q, "Please provide hospital / site name:") %></div>
+      <div class="item-content"><%= text_field_tag(:repair_hospital_name,nil,{placeholder: "Please provide hospital / site name:",required: true}) %></div>
+    </div>
+
+    <div class="block">
+      <div class="item-label"><%= label_tag(:q, "Please provide hospital / site address:") %></div>
+      <div class="item-content">
+      <%= text_field_tag(:repair_hospital_address,nil,{placeholder: "Please provide hospital / site address:",required: true}) %>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="item-label"><%= label_tag(:repair_product_name, "Product model name:") %></div>
+      <div class="item-content">
+      <%= text_field_tag(:repair_product_name,nil,{placeholder: "Product model name:",required: true}) %>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="item-label"><%= label_tag(:repair_serial_number, "Product serial number:") %></div>
+      <div class="item-content">
+      <%= text_field_tag(:repair_serial_number,nil,{placeholder: "Product serial number:",required: true}) %>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="item-label"><%= label_tag(:repair_description, "Description of problem:") %></div>
+      <div class="item-content">
+      <%= text_area_tag(:repair_description,nil,{placeholder: "Description of problem:", rows: 8,required: true}) %>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="item-label"><%= label_tag(:repair_works, "Works & checks undertaken on product / part:") %></div>
+      <div class="item-content">
+      <%= text_field_tag(:repair_works,nil,{placeholder: "Works & checks undertaken on product / part", rows: 8}) %>
+      </div>
+    </div>
+  </div>
+  <!-- /#repair_form -->
+
+
+  <div id="Technical_form" class="additional_form">
+    <div class="block">
+      <div class="item-label"><%= label_tag(:technical_product, "Product Line:") %></div>
+      <div class="item-content item-content-select">
+      <%= select_tag(:technical_product,options_for_select([ ['Product Line',''],['Cardiology','Cardiology'], ['Patient Monitoring','Patient Monitoring'],['Vascular Screening','Vascular Screening'],['Ultrasound','Ultrasound'],['Defibrillator','Defibrillator'] ]) ,required: true) %>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="item-label"><%= label_tag(:technical_description, "Please write your enquiry:") %></div>
+      <div class="item-content">
+      <%= text_area_tag(:technical_description,nil,{placeholder: "Please write your enquiry:", rows: 8,required: true}) %></textarea>
+      </div>
+    </div>
+  </div>
+  <!-- /#technical_form -->
+
+  <div class="btnArea additional_form Common_form">
+    <input type="submit" value="SUBMIT A TICKET" class="btn-blue-large">
+  </div>
+  <% end %>
+
+</div>
+<!-- /.login-container -->
+
+</article>
+
+
+</div>
+<!-- /.content -->
+<style>
+.home .mainImageWrapper.ticket{
+  background-image: url(/assets/images/ticket/FD-CO-Ticket_Submission_Banner-PC.png)
+}
+
+div.block-frame{
+  margin-top: 2em;
+}
+</style>
+
+<script>
+$(function(){
+
+	$('#category').on('change',function(e){
+		updateForm();
+	})
+	updateForm();
+})
+
+
+function updateForm(){
+	var v = $('#category').val()
+	console.log('updateForm')
+	$('.additional_form').hide()
+	$('#'+ v +'_form').show()
+  if(v){
+  $('.Common_form').show()
+  }
+
+  $('input,select,textarea').removeAttr('required')
+  $('.Common_form input, #'+ v +'_form input, #'+ v +'_form select, #'+ v +'_form textarea').attr('required','required')
+
+  $('#repair_works').removeAttr('required')
+
+}
+
+</script>

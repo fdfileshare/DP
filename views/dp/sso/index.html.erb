@@ -1,0 +1,111 @@
+<div class="mainImageWrapper">
+<h2>Hello Distributors!</h2>
+</div>
+<!-- /.mainImageWrapper -->
+
+<div class="content">
+<article>
+
+<% if session[:nameid] %>
+<section class="section indexMenu">
+  <div class="clmn-2 indexMenu-inner clearfix">
+    <div class="block block-resource">
+    <h2 class="subTitle">Resource Center</h2>
+    <p class="subTitle-caption">Contact us for help</p>
+    <div class="btnArea">
+      <a href="https://fukuda.account.box.com" class="btn-blue-large" target="_blank">SEE ALL</a>
+    </div>
+    </div>
+    <!-- /.block -->
+
+    <div class="block-dl">
+    <div class="block-dl-inner">
+    <p class="block-dl-desc">You can still access <br class="sp">the old download center. <a target="_blank" href="http://download2.fukuda.co.jp/download/index.php">Click here</a></p>
+    </div>
+    </div>
+    <!-- /.block-dl -->
+
+    <div class="block block-support">
+    <h2 class="subTitle">Support</h2>
+    <p class="subTitle-caption">Contact us for help</p>
+    <div class="btnArea">
+      <%= link_to 'VIEW TICKETS', :dp_tickets,{class: 'btn-blue-large'} %>
+      <%= link_to 'SUBMIT A TICKET', :dp_ticket_form,{class: 'btn-blue-large'} %>
+    </div>
+    </div>
+    <!-- /.block -->
+
+  </div>
+</section>
+<!-- /.indexMenuArea -->
+
+<section class="section newsIndexArea distributorsNews">
+  <h2>Distributors News</h2>
+  <div class="clmn-3-block innerBlock clearfix">
+
+    <% @dp_news.each do |news| %>
+      <div class="block">
+      <a href="<%= dp_news_path(news) %>" target="_blank">
+        <figure class="postArchive-item-thumb"> <%= image_tag news.eyecatch.url(:original) ,{width:360, height:100,style: 'width: auto;'}%></figure>
+        <p class="posted-on">Posted on <%= news.post_at %></p>
+        <h3><%= news.title %></h3>
+      </a>
+      </div>
+    <!-- /.block -->
+    <% end %>
+
+  </div>
+  <!-- /.innerBlock -->
+  <div class="btnArea"><a href="<%= dp_news_index_path %>" class="btn-keycolor-large">SEE ALL NEWS</a></div>
+</section>
+<!-- /.newsIndexArea -->
+
+<% end %>
+
+<section class="section newsIndexArea">
+  <h2>Fukuda News</h2>
+  <div class="clmn-3-block innerBlock clearfix">
+  <% @fw_news.each do |item| %>
+    <div class="block">
+    <a href="<%= item.link %>">
+      <figure><img src="<%= item.dc_creator.length>0 ? item.dc_creator.gsub('.jpg','-380x100.jpg').gsub('.png','-380x100.png') : '/assets/images/common/thumb-blank.jpg' %>" alt="" width="360" height="100"></figure>
+      <p class="posted-on">Posted on <%= Date.parse item.pubDate.to_s %></p>
+      <h3><%= item.title %></h3>
+    </a>
+    </div>
+    <!-- /.block -->
+  <% end %>
+  </div>
+  <!-- /.innerBlock -->
+  <div class="btnArea"><a href="https://fukuda.com/news/" class="btn-keycolor-large">SEE ALL NEWS</a></div>
+</section>
+<!-- /.newsIndexArea -->
+
+</article>
+<!-- /.indexArticle -->
+
+<style>
+/*　トリミングする外側の枠　*/
+figure.postArchive-item-thumb {
+    overflow: hidden;
+    width: 280px;/* トリミングしたい枠の幅 */
+    height: 100px;/* トリミングしたい枠の高さ */
+    position: relative;
+}
+figure.postArchive-item-thumb img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+}
+</style>
+
+
+
+

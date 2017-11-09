@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1, minimum-scale=0.5 , maximum-scale=2" />
+    <meta name="description" content="#" />
+    <meta name="keywords" content="#" />
+    <link rel="shortcut icon" href="/assets/images/common/favicon.ico" />
+    <link rel="canonical" href="http://www.futaba-ad.co.jp/" />
+    
+    <!-- Open Graph protocol -->
+    <meta property="og:title" content="TOP | FUKUDA" />
+    <meta property="og:description" content="#" />
+    <meta property="og:url" content="http://dp.fukuda.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="FUKUDA" />
+    
+    <!-- css -->
+    <link rel="stylesheet" href="/assets/css/default.css?ver=0101617" media="all" />
+    <link rel="stylesheet" href="/assets/css/animate.css?ver=0101617" media="all" />
+    <link rel="stylesheet" href="/assets/css/drawer.css?ver=0101617" media="all" />
+    <link rel="stylesheet" href="/assets/css/style-wp.css?ver=0101617" media="all" />
+    <link rel="stylesheet" href="/assets/css/style.css?ver=0101617" media="all" />
+    <link rel="stylesheet" id="mobile_css-css"  href="/assets/css/mobile.css" type="text/css" media="all and (max-width: 1025px)" />
+
+    
+    <link rel='stylesheet' id='fontawesome-css'  href='//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' type='text/css' media='all' />
+    
+    <!-- font -->
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
+
+    <title>Fukuda Distributor Portal</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body class="drawer drawer--right page-home home- home">
+
+    <!-- Load Facebook SDK for JavaScript -->
+  <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.9&appId=1436794129877422";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+    <div id="page" class="container">
+      <%= render 'layouts/header' %>
+      <%= render 'layouts/header_nav' %>
+      
+      <!-- /.header -->
+  	  <%= yield %>
+    </div>
+      <%= render 'layouts/footer' %>
+      <%= render 'layouts/footer_js' %>
+  </body>
+
+  <script src="https://platform.twitter.com/widgets.js" async></script>
+  
+</html>

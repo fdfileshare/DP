@@ -1,0 +1,90 @@
+<!-- /.drawerSpNav -->
+<div class="mainBannerWrapper" style="background-image: url(/assets/images/ticket/FD-CO-Ticket_Status_Banner-PC.png);">
+<div class="mainBannerWrapper-inner" style="background-image: url(/assets/images/ticket/FD-CO-Ticket_Status_Banner-MB.png);">
+  </div>
+</div>
+<!-- /.mainBannerWrapper -->
+
+<div class="content clearfix">
+
+<article class="article">
+
+<div class="clmn-2-container tickets-container">
+  <div class="clmn-2 clearfix innerBlock innerBlock-clmn-2">
+
+  <div class="block">
+    <h2 class="subTitle ticket-title">Open Tickets (<%= @open_tickets.count  %>)</h2>
+    <% @open_tickets.each do |ticket| %>
+	    <dl class="ticket-item ticket-item-open">
+	      <dt class="ticket-item-title item-title"><%= link_to ticket.subject,  { :controller => :sso, :action => :ticket, :id => ticket.id} %></dt>
+	      <dd class="ticket-item-content"><%= ticket.description %></dd>
+	    </dl>
+    <% end %>
+  </div>
+  <!-- /.block -->
+
+  <div class="block">
+    <h2 class="subTitle ticket-title">Closed Tickets (<%= @closed_tickets.count  %>)</h2>
+    <% @closed_tickets.each do |ticket| %>
+	    <dl class="ticket-item ticket-item-closed">
+  	    <dt class="ticket-item-title item-title"><%= link_to ticket.subject,  { :controller => :sso, :action => :ticket, :id => ticket.id} %></dt>
+    	  <dd class="ticket-item-content"><%= ticket.description %></dd>
+    	</dl>
+    <% end %>
+    <!-- <p><a href="<%= dp_tickets_path %>">SEE ALL</a></p> -->
+  </div>
+  <!-- /.block -->
+
+  </div>
+  <!-- /.innerBlock -->
+
+</div>
+<!-- /.login-container -->
+
+</article>
+
+
+</div>
+<!-- /.content -->
+
+
+<!--
+
+
+<div class="row">
+	<div class="col-xs-12">
+	<%= link_to 'top', :root %>
+
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-xs-12">
+
+		<h1>Open Tickets (<%= @open_tickets.count  %>)</h1>
+		<ul>
+			<% @open_tickets.each do |ticket| %>
+				<li><strong><%=  ticket.subject %>(<%= ticket.id %>)</strong><br/><p><%= ticket.description %></p></li>
+			<% p ticket %>
+
+			<% end %>
+		</ul>
+
+		<h1>Closed Tickets (<%= @closed_tickets.count  %>)</h1>
+		<ul>
+			<% @closed_tickets.each do |ticket| %>
+				<li><strong><%=  ticket.subject %>(<%= ticket.id %>)</strong><br/><p><%= ticket.description %></p></li>
+			<% end %>
+		</ul>
+<%= link_to 'see all', 'asahi.com' %>
+	</div>
+</div>
+-->
+
+<style>
+.tickets-container h2.ticket-title{
+	text-align: left;
+}
+
+
+</style>

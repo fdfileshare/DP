@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-xs-12">
+<%= form_for(news, :url => dp_news_index_path) do |f| %>
+  <% if news.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(news.errors.count, "error") %> prohibited this news from being saved:</h2>
+
+      <ul>
+      <% news.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <dl>
+    <dt><%= f.label :title %></dt>
+    <dd><%= f.text_field :title %></dd>
+
+    <dt><%= f.label :description %></dt>
+    <dd><%= f.text_area :description, :class => "tinymce", :rows => 5, :cols => 60 %></dd>
+
+    <dt><%= f.label :post_at %></dt>
+    <dd><%= f.date_field :post_at %></dd>
+
+    <dt><%= f.label :eyecatch, 'Image' %></dt>
+    <dd><%= f.file_field :eyecatch %></dd>
+<!--
+    <% if news.eyecatch.url(:original).length >0 %>
+    <dt>&nbsp;</dt>
+    <dd><%= image_tag news.eyecatch.url(:original) %></dd>
+    <% end %>
+-->
+    <dt>&nbsp;</dt>
+    <dd><%= f.submit 'post' %></dd>
+  </dl>
+
+<% end %>
+
+  </div>
+</div>

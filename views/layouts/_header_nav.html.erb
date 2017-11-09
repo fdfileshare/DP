@@ -1,0 +1,65 @@
+<nav class="drawerSpNavWrapper">
+  <button type="button" class="drawer-toggle drawer-hamburger drawerSpNavToggle">
+    <span class="drawer-hamburger-icon"></span>
+  </button>
+  <div class="drawer-nav drawerSpNav">
+    <ul class="drawer-menu">
+      <ul class="childNav noborder">
+        <li >          <ul><li>
+          <% if session[:nameid] %><div class="leftpadding">Logged in as <%= session[:nameid] %></div></li><li>
+            <a  href="<%= url_for(:dp_root) %>">DISTRIBUTORS MENU<!-- <span><img src="/assets/images/common/thumb-user.jpg" alt=""></span> --></a>
+          <% else %>
+            <%= link_to 'LOGIN', :sso_sso_index %>
+          <% end %></li></ul>
+        </li>
+      </ul>
+
+    <li>
+      <a href="/products/"><span>PRODUCTS</span></a>
+      <ul class="childNav">
+      <li >
+        <a href="//fukuda.com/products_category/new-product/">New Product</a></li><li >
+        <a href="//fukuda.com/products_category/cardiology/">Cardiology</a></li><li >
+        <a href="//fukuda.com/products_category/patient-monitoring/">Patient Monitoring</a></li><li >
+        <a href="//fukuda.com/products_category/vascular-screening/">Vascular Screening</a></li><li >
+        <a href="//fukuda.com/products_category/ultrasound/">Ultrasound</a></li>      </ul>
+    </li>
+    <li>
+      <span>COMPANY</span>
+      <ul class="childNav">
+      <li class="page_item page-item-12172 page_item_has_children"><a href="//fukuda.com/about/">About Us</a>
+<ul class='children'>
+  <li class="page_item page-item-8232"><a href="//fukuda.com/about/vision-and-mission/">Vision and Mission</a></li>
+  <li class="page_item page-item-10162"><a href="//fukuda.com/about/ecg-story/">ECG Story</a></li>
+  <li class="page_item page-item-2382"><a href="//fukuda.com/about/our-history/">Our History</a></li>
+  <li class="page_item page-item-2222"><a href="//fukuda.com/about/quality-management/">Quality Management</a></li>
+  <li class="page_item page-item-2262"><a href="//fukuda.com/about/production-systems/">Production Systems</a></li>
+  <li class="page_item page-item-8272"><a href="//fukuda.com/about/research-development/">R&#038;D</a></li>
+</ul>
+</li>
+<li class="page_item page-item-2362 page_item_has_children"><a href="//fukuda.com/ir/">Investor Relations</a>
+<ul class='children'>
+  <li class="page_item page-item-2322"><a href="//fukuda.com/ir/analysis-of-operation-results/">Performance Analysis</a></li>
+  <li class="page_item page-item-2452"><a href="//fukuda.com/ir/financial-highlights/">Financial Highlights</a></li>
+  <li class="page_item page-item-10952"><a href="//fukuda.com/ir/financial-reports/">Financial Reports</a></li>
+  <li class="page_item page-item-2192"><a href="//fukuda.com/ir/ceo-message/">CEO Message</a></li>
+  <li class="page_item page-item-12302"><a href="//fukuda.com/ir/ir-calendar/">IR Calendar</a></li>
+</ul>
+</li>
+<li class="page_item page-item-13422 page_item_has_children"><a href="//fukuda.com/legal/">Legal</a>
+<ul class='children'>
+  <li class="page_item page-item-12252"><a href="//fukuda.com/legal/privacy-policy/">Privacy Policy</a></li>
+  <li class="page_item page-item-5572"><a href="//fukuda.com/legal/terms-of-use/">Terms of Use</a></li>
+  <li class="page_item page-item-12002"><a href="//fukuda.com/legal/cookie-information/">Cookie Information</a></li>
+</ul>
+</li>
+<li class="page_item page-item-5062"><a href="//fukuda.com/events/">Events</a></li>
+<li class="page_item page-item-11282"><a href="//fukuda.com/global-offices/">Global Offices</a></li>
+<li class="page_item page-item-9442"><a href="//fukuda.com/contact/">Contact Us</a></li>
+      </ul>
+    </li>
+    </ul>
+  </div>
+  <!-- /.gNav -->
+</nav>
+<!-- /.drawerSpNav -->
